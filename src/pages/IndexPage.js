@@ -1,35 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Sistema de Elecciones UMSS</title>
-  </head>
-  <body>
+import React, { useEffect, useState } from 'react'
+//css
+import '../css/styles.css'
+//imágenes
+import umms from "../assets/UMSS.png"
+import header1 from "../assets/header-1.jpg"
+import votacion1 from "../assets/votacion1.jpg"
+import partido1 from "../assets/partido1.jpg"
+import partido2 from "../assets/partido2.png"
+import partido3 from "../assets/partido3.jpg"
+import ImageSlider from '../components/Sidebar'
+import scrollreveal from 'scrollreveal'
+const IndexPage = () => {
+const navLinks = document.getElementById("nav-links");
+//const menuBtnIcon = menuBtn.querySelector("i");
+const [isNavOpen, setIsNavOpen] = useState(false);
+const menuAbrir= (e) => {
+  setIsNavOpen(!isNavOpen);
+};
 
-    
-    <nav class="cabecera">
-      <a href="#" > <img src="assets/UMSS.png" class="nav__logo" alt=""></a>
-      <ul class="nav__links" id="nav-links">
-        <li class="link2"><a href="#home">Inicio</a></li>
-        <li class="link2"><a href="#about">Sobre Nosotros</a></li>
-        <li class="link2"><a href="#portfolio">Partidos</a></li>
-        <li class="link2"><a href="#client">Propuestas</a></li>
-        <li class="link2"><a href="login.html">Ingresar</a></li>
+const cerrarMenu=(e)=>{
+  navLinks.classList.remove("open");
+}
+useEffect(() => {
+  const scrollReveal = scrollreveal();
+  
+  const scrollRevealOption = {
+    distance: '50px',
+    origin: 'bottom',
+    duration: 1000,
+  };
+
+  // header container
+  scrollReveal.reveal('.header__image img', {
+    ...scrollRevealOption,
+    interval: 500,
+  });
+  // about container
+  scrollReveal.reveal(".about__card", {
+    ...scrollRevealOption,
+    interval: 500,
+  });
+  // portfolio container
+  scrollReveal.reveal(".portfolio__card", {
+    ...scrollRevealOption,
+    interval: 500,
+  });
+  // news container
+  scrollReveal.reveal(".news__card", {
+    ...scrollRevealOption,
+    interval: 500,
+  });
+  // Limpia ScrollReveal en el desmontaje del componente
+  return () => {
+    scrollReveal.destroy();
+  };
+}, []);
+  return (
+    <div>
+      <nav class="cabecera">
+      <a href="#" > <img src={umms} class="nav__logo" alt=""/></a>
+      <ul className={`nav__links ${isNavOpen? 'open' : ''}`} id="nav-links">
+        <li class="link2" onClick={cerrarMenu}><a href="#home">Inicio</a></li>
+        <li class="link2" onClick={cerrarMenu}><a href="#about">Sobre Nosotros</a></li>
+        <li class="link2" onClick={cerrarMenu}><a href="#portfolio">Partidos</a></li>
+        <li class="link2" onClick={cerrarMenu}><a href="#client">Propuestas</a></li>
+        <li class="link2" onClick={cerrarMenu}><a href="/Login">Ingresar</a></li>
        
 
       </ul>
       <div class="nav__menu__btn" id="menu-btn">
-        <span><i class="ri-menu-3-line"></i></span>
+        <span><i className={`${isNavOpen ? 'ri-close-line' : 'ri-menu-3-line'}`} onClick={()=>menuAbrir()}></i></span>
       </div>
     </nav>
 
@@ -44,15 +84,15 @@
       </div>
 
       <div class="header__image">
-        <img src="assets/header-1.jpg" alt="header" />
-        <img src="assets/votacion1.jpg" alt="header" />
+        <img src={header1} alt="header" />
+        <img src={votacion1} alt="header" />
       </div>
     </header>
 
     <section class="section__container about__container" id="about">
       <div class="about__header">
         <div class="about__image">
-          <img src="assets/UMSS.png" alt="about" />
+          <img src={umms} alt="about" />
         </div>
         <div class="about__content">
           <p class="section__subheader">Sobre Nosotros</p>
@@ -94,7 +134,7 @@
           </div>
         </div>
         <div class="about__card">
-          <span><i class="ri-layout-masonry-line"></i></span>
+          <span><i className='ri-layout-masonry-line'></i></span>
           <div>
             <h4>Cómite Electoral</h4>
             <p>
@@ -133,13 +173,13 @@
       </div>
       <div class="portfolio__grid">
         <div class="portfolio__card">
-          <img src="assets/partido1.jpg" alt="portfolio" />
+          <img src={partido1} alt="portfolio" />
         </div>
         <div class="portfolio__card">
-          <img src="assets/partido2.png" alt="portfolio" />
+          <img src={partido2} alt="portfolio" />
         </div>
         <div class="portfolio__card">
-          <img src="assets/partido3.jpg" alt="portfolio" />
+          <img src={partido3} alt="portfolio" />
         </div>
       </div>
     </section>
@@ -155,71 +195,10 @@
           </a>
         </div>
       </div>
-      <!-- Slider main container -->
-      <div class="swiper">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-          <div class="swiper-slide">
-            <div class="client__card">
-              <img src="assets/profile-pic-1.jpg" alt="client" />
-              <div>
-                <h4>Andress Mount</h4>
-                <p>
-                  Como partido politico proponemos:
-                  <p>* Propuesta 1</p>
-                  <p>* Propuesta 2</p>
-                  <p>* Propuesta 3</p>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="client__card">
-              <img src="assets/profile-pic-2.jpg" alt="client" />
-              <div>
-                <h4>Sarah Anderson</h4>
-                <p>
-                  Como partido politico proponemos:
-                  <p>* Propuesta 1</p>
-                  <p>* Propuesta 2</p>
-                  <p>* Propuesta 3</p>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="client__card">
-              <img src="assets/profile-pic-3.jpg" alt="client" />
-              <div>
-                <h4>John Roberts</h4>
-                <p>
-                  Como partido politico proponemos:
-                  <p>* Propuesta 1</p>
-                  <p>* Propuesta 2</p>
-                  <p>* Propuesta 3</p>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="client__card">
-              <img src="assets/profile-pic-4.jpg" alt="client" />
-              <div>
-                <h4>David Ramirez</h4>
-                <p>
-                  Como partido politico proponemos:
-                  <p>* Propuesta 1</p>
-                  <p>* Propuesta 2</p>
-                  <p>* Propuesta 3</p>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* <!-- Slider main container --> */}
+      <ImageSlider/>
     </section>
-
+    
  
 
     <footer class="section__container footer__container">
@@ -250,11 +229,10 @@
       </div>
     </footer>
     <div class="footer__bar">
-      Copyright © 2023 Web Design Mastery.
+      Copyright © 2023 Web Design Mastery. All rights reserved.
     </div>
+    </div>
+  )
+}
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="main.js"></script>
-  </body>
-</html>
+export default IndexPage
