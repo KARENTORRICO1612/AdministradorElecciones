@@ -9,6 +9,14 @@ html{
     box-sizing: border-box;
 }
 
+
+h4{
+    color: #dae1e7;
+    font-size: 10px;    
+}
+
+
+
 *,*::after, *::before{
     box-sizing: inherit;
 }
