@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/normalize.css'
 import '../css/estilos.css'
 import { useNavigate } from 'react-router'
+import axios from 'axios'
 const LoginPage = () => {
 
     const [showErrorNombre, setshowErrorName] = useState(false)
@@ -10,9 +11,10 @@ const LoginPage = () => {
     const [showContraseña, setContraseña] = useState(false)
     const [showValorContraseña, setValorContraseña] = useState("")
 
+    // const [nombre,setNombre] = useState()
     let errorNombre = false
     let errorContraseña = false
-
+    const url = ''
 
     const navigate = useNavigate()
 
@@ -38,7 +40,10 @@ const LoginPage = () => {
 
       if(errorNombre === false  && errorContraseña === false )
       {
-                navigate("/")
+        axios.get(url + 'verificarUsuario').then(response => {
+            navigate("/")
+        })        
+        
       }
     }
 
