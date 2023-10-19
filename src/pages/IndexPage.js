@@ -80,7 +80,7 @@ useEffect(() => {
 
       <div class="header__content">
         <div class="header-content">
-          <h1 class="title">SISTEMA DE ELECCIONES UMSS</h1>
+          <h1 class="title">ÓRGANO ELECTORAL UMSS</h1>
       </div>
 
       </div>
