@@ -3,7 +3,7 @@
     --azulOscuro:#0B2545;
     --azulGris:#00909E;
     --blanco:#dae1e7;
-    --fuente:'Quicksand', sans-serif;
+    /* --fuente:'Quicksand', sans-serif; */
 }
 html{
     box-sizing: border-box;
@@ -21,8 +21,9 @@ h4{
     box-sizing: inherit;
 }
 
+
 .body2{
-    font-family: var(--fuente);
+    /* font-family: var(--fuente); */
     background-color: var(--azulOscuro);
     display: flex;
     align-items: center;
@@ -36,11 +37,13 @@ h4{
     margin: 0 auto;
     max-width: 1200px;
     width: 95%;
-    padding-top: 10%;
+    padding-top: 1%;
 }
 
+
+
 .imagen-formulario2{
-    background-image: url('../img/votacion.png');
+    background-image: url('../assets/votacionImagen.jpg');
     background-position: center center;
     background-size: cover;
     height: 200px;

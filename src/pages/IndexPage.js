@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import '../css/styles.css'
 //imágenes
 import umms from "../assets/UMSS.png"
+import umms2 from "../assets/LogoUMSSGrande.png"
 import header1 from "../assets/header-1.jpg"
 import votacion1 from "../assets/votacion1.jpg"
 import partido1 from "../assets/partido1.jpg"
@@ -19,7 +20,8 @@ const menuAbrir= (e) => {
 };
 
 const cerrarMenu=(e)=>{
-  navLinks.classList.remove("open");
+  setIsNavOpen(!isNavOpen);
+  // navLinks.classList.remove("open");
 }
 useEffect(() => {
   const scrollReveal = scrollreveal();
@@ -61,7 +63,7 @@ useEffect(() => {
       <a href="#" > <img src={umms} class="nav__logo" alt=""/></a>
       <ul className={`nav__links ${isNavOpen? 'open' : ''}`} id="nav-links">
         <li class="link2" onClick={cerrarMenu}><a href="#home">Inicio</a></li>
-        <li class="link2" onClick={cerrarMenu}><a href="#about">Sobre Nosotros</a></li>
+        <li class="link2" onClick={cerrarMenu}><a href="#about">Aspectos institucionales</a></li>
         <li class="link2" onClick={cerrarMenu}><a href="#portfolio">Partidos</a></li>
         <li class="link2" onClick={cerrarMenu}><a href="#client">Propuestas</a></li>
         <li class="link2" onClick={cerrarMenu}><a href="/Login">Ingresar</a></li>
@@ -92,65 +94,73 @@ useEffect(() => {
     <section class="section__container about__container" id="about">
       <div class="about__header">
         <div class="about__image">
-          <img src={umms} alt="about" />
+          <img src={umms2} alt="about" />
         </div>
         <div class="about__content">
-          <p class="section__subheader">Sobre Nosotros</p>
-          <h2 class="section__header">Aspectos institucionales</h2>
+          {/* <p class="">Sobre Nosotros</p> */}
+          <h2 class=" section__subheader section__header">Aspectos institucionales</h2>
           <p class="paragraph">
-            La Universidad Mayor de San Simón (UMSS), fundada por Ley del 5 de noviembre de 1832, 
-            durante la Presidencia del Mcal. Andrés de Santa Cruz, es una entidad autónoma, de derecho público, 
-            constituida por docentes, estudiantes y personal administrativo, con personería jurídica propia,
-             reconocida por la Constitución Política del Estado. Cubre el área de la educación superior con sus 
-             funciones de enseñanza-aprendizaje, investigación científica y tecnológica e interacción social universitaria. 
-             La UMSS pertenece al Sistema de Universidades Públicas agrupadas en torno al Comité Ejecutivo de
-              la Universidad Boliviana (CEUB). La actividad académica y administrativa de la UMSS se sujeta, 
-              tanto a las leyes bolivianas como a la normativa interna, expresada en el Estatuto Orgánico.
-               A partir de 1930 (Referéndum) y 1931 (Decreto Ley), la Universidad Boliviana asume la Autonomía 
-               Universitaria, cuya esencia reside en la libertad del pensamiento para desarrollar el conocimiento
-                científico, en función de sus principios, fines y objetivos, tal como establece la Constitución
-                 Política del Estado. La Autonomía Universitaria es un derecho imprescriptible e inalienable, 
-                 que implica obligaciones y reconoce derechos para autoridades, docentes, estudiantes y dependientes
-                  administrativos; y se entiende como la capacidad que tiene la Universidad para la libre administración
-                   de su patrimonio, la elección de sus Autoridades, el nombramiento de su personal docente y administrativo,
-                    la elaboración y aprobación de sus estatutos, planes de estudio, reglamentos y presupuestos anuales,
-                     así como la capacidad que se le reconoce para aceptar legados y donaciones, para celebrar contratos y 
-                     negociar empréstitos con garantía de sus bienes y recursos, previa aprobación legislativa. La base de
-                      la organización democrática de la UMSS descansa en la decisión soberana de la totalidad de docentes y
-                       estudiantes, expresada mediante el voto universal y el co-gobierno paritario docente-estudiantil.
-          </p>
-          <button class="btn">Learn More</button>
+              La Universidad Mayor de San Simón (UMSS), fundada por Ley del 5 de
+              noviembre de 1832, durante la Presidencia del Mcal. Andrés de
+              Santa Cruz, es una entidad autónoma, de derecho público,
+              constituida por docentes, estudiantes y personal administrativo,
+              con personería jurídica propia, reconocida por la Constitución
+              Política del Estado.
+            </p>
+
+            <p>
+              La Universidad Boliviana asume la Autonomía Universitaria, cuya
+              esencia reside en la libertad del pensamiento para desarrollar el
+              conocimiento científico, en función de sus principios, fines y
+              objetivos, tal como establece la Constitución Política del Estado.
+              La Autonomía Universitaria es un derecho imprescriptible e
+              inalienable, que implica obligaciones y reconoce derechos para
+              autoridades, docentes, estudiantes y dependientes administrativos;
+              y se entiende como la capacidad que tiene la Universidad para la
+              libre administración de su patrimonio, la elección de sus
+              Autoridades, el nombramiento de su personal docente y
+              administrativo, la elaboración y aprobación de sus estatutos,
+              planes de estudio, reglamentos y presupuestos anuales, así como la
+              capacidad que se le reconoce para aceptar legados y donaciones,
+              para celebrar contratos y negociar empréstitos con garantía de sus
+              bienes y recursos, previa aprobación legislativa.
+            </p>
+
         </div>
       </div>
       <div class="about__grid">
         <div class="about__card">
           <span><i class="ri-pen-nib-line"></i></span>
           <div>
-            <h4>Tribunal Electoral</h4>
-            <p>
-              Our designers and content creators are committed to delivering
-              visually stunning and engaging digital content.
-            </p>
+          <h4>Tribunal Electoral</h4>
+              <p>
+                Es un órgano especializado encargado de resolver controversias
+                en la materia electoral, así como proteger los derechos
+                político-electorales de los ciudadanos.
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="about__card">
-          <span><i className='ri-layout-masonry-line'></i></span>
-          <div>
-            <h4>Cómite Electoral</h4>
-            <p>
-              We stay at the forefront of technological advancements, ensuring
-              that your digital presence beautiful and performant.
-            </p>
+          <div class="about__card">
+            <span>
+              <i className="ri-layout-masonry-line"></i>
+            </span>
+            <div>
+              <h4>Cómite Electoral</h4>
+              <p>
+                Es un órgano  encargará de monitorear todas las etapas del proceso electoral,
+                 desde la preparación de las listas de votantes hasta el conteo y la tabulación de los resultados.
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="about__card">
-          <span><i class="ri-checkbox-line"></i></span>
-          <div>
-            <h4>Jurados Electorales</h4>
-            <p>
-              We understand that your digital presence should not just look
-              good; it should deliver traffic, engagement, and conversions.
-            </p>
+          <div class="about__card">
+            <span>
+              <i class="ri-checkbox-line"></i>
+            </span>
+            <div>
+              <h4>Jurados Electorales</h4>
+              <p>
+              Proclama los resultados electorales, a los/as candidatos/as electos/as y otorga las credenciales correspondientes..
+              </p>
           </div>
         </div>
       </div>
