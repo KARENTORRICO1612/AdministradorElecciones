@@ -197,7 +197,7 @@ useEffect(() => {
     <section class="section__container client__container" id="client">
       <div class="client__header">
         <div>
-          <p class="section__subheader">Propuestas</p>
+           <h2 class="section__header">PROPUESTAS</h2>
         </div>
         <div>
           <a href="#" class="btn__link">
@@ -213,7 +213,7 @@ useEffect(() => {
 
     <footer class="section__container footer__container">
       <div class="footer__col">
-        <h5><a href="#">Contactános</a></h5>
+      <h2><a  class="section__header" href="#">CONTÁCTANOS</a></h2>
       </div>
       <div class="footer__col">
         <h4>Secretaria General</h4>
