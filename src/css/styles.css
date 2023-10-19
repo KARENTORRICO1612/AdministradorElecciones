@@ -102,6 +102,10 @@ body {
   scroll-behavior: smooth;
 }
 
+.navegadorSeccion{
+  color: #dae1e7;
+  text-decoration: none;
+}
 
 nav {
   position: fixed;
@@ -161,6 +165,11 @@ nav {
 
 .nav__links.open {
   transform: scaleY(1);
+}
+
+
+navegadorSeccion{
+  color: #dae1e7;
 }
 
 .link2 {

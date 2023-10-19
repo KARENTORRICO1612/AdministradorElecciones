@@ -62,11 +62,11 @@ useEffect(() => {
       <nav class="cabecera">
       <a href="#" > <img src={umms} class="nav__logo" alt=""/></a>
       <ul className={`nav__links ${isNavOpen? 'open' : ''}`} id="nav-links">
-        <li class="link2" onClick={cerrarMenu}><a href="#home">Inicio</a></li>
-        <li class="link2" onClick={cerrarMenu}><a href="#about">Aspectos institucionales</a></li>
-        <li class="link2" onClick={cerrarMenu}><a href="#portfolio">Partidos</a></li>
-        <li class="link2" onClick={cerrarMenu}><a href="#client">Propuestas</a></li>
-        <li class="link2" onClick={cerrarMenu}><a href="/Login">Ingresar</a></li>
+        <li class="link2" onClick={cerrarMenu}><a class="navegadorSeccion" href="#home">Inicio</a></li>
+        <li class="link2" onClick={cerrarMenu}><a class="navegadorSeccion" href="#about">Aspectos institucionales</a></li>
+        <li class="link2" onClick={cerrarMenu}><a class="navegadorSeccion" href="#portfolio">Partidos</a></li>
+        <li class="link2" onClick={cerrarMenu}><a class="navegadorSeccion" href="#client">Propuestas</a></li>
+        <li class="link2" onClick={cerrarMenu}><a class="navegadorSeccion" href="/Login">Ingresar</a></li>
        
 
       </ul>

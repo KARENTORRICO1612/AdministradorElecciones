@@ -22,6 +22,12 @@ h4{
 }
 
 
+.errorMensaje{
+    color: white;
+    font-size: 10px;
+}
+
+
 .body2{
     /* font-family: var(--fuente); */
     background-color: var(--azulOscuro);

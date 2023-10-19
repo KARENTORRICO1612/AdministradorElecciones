@@ -1,107 +1,113 @@
-import React, { useEffect, useState } from 'react'
-import '../css/normalize.css'
-import '../css/estilos.css'
-import { useNavigate } from 'react-router'
-import axios from 'axios'
+import React, { useEffect, useState } from "react";
+// import '../css/normalize.css'
+import "../css/estilos.css";
+import { useNavigate } from "react-router";
+import axios from "axios";
+
 const LoginPage = () => {
+  const [showErrorNombre, setShowErrorName] = useState(false);
+  const [showValorInput, setValorInput] = useState({ name: "", password: "" });
+  const [showContraseña, setContraseña] = useState(false);
+  const navigate = useNavigate();
 
-    const [showErrorNombre, setshowErrorName] = useState(false)
-    const [showValorInput, setValorInput] = useState({name:"",password:""})
+  const LoginClick = (e) => {
+    e.preventDefault();
 
-    const [showContraseña, setContraseña] = useState(false)
-    const [showValorContraseña, setValorContraseña] = useState("")
-
-    // const [nombre,setNombre] = useState()
-    let errorNombre = false
-    let errorContraseña = false
-    const url = ''
-
-    const navigate = useNavigate()
-
-    const LoginClick = (e) => {
-        e.preventDefault()
-        if(showValorInput.name.length === 0)
-        {
-            setshowErrorName(true);
-            errorNombre = true
-        }else{
-            setshowErrorName(false)
-            errorNombre = false
-        }
-
-        if(showValorInput.password.length === 0)
-        {
-            setContraseña(true);
-            errorContraseña = true
-        }else{
-            setContraseña(false)
-            errorContraseña = false
-        }
-
-      if(errorNombre === false  && errorContraseña === false )
-      {
-        axios.get(url + 'verificarUsuario').then(response => {
-            navigate("/")
-        })        
-        
-      }
+    if (showValorInput.name.length === 0) {
+      setShowErrorName(true);
+      return; // No necesitas la variable errorNombre
+    } else {
+      setShowErrorName(false);
     }
 
-    const CapturaContenido = (e) => {
-
-        const { name, value } = e.target;
-            setValorInput({
-           ...showValorInput,
-            [name]: value,
-          });
-
-        
+    if (showValorInput.password.length === 0) {
+      setContraseña(true);
+      return; // No necesitas la variable errorContraseña
+    } else {
+      setContraseña(false);
     }
 
- 
+    // Hacer la solicitud al servidor
+    axios
+      .get(
+        `http://localhost:8000/verificarAdministrador/${showValorInput.name}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        if (response.data) {
+          const administrador = response.data;
+
+          if (
+            showValorInput.password === administrador.CONTRASENAADMINISTRADOR
+          ) {
+            alert("administrador correcto");
+            navigate(`/home/${showValorInput.name}`);
+          } else {
+            alert("contraseña incorrecta");
+          }
+        } else {
+          alert("No existe administrador");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  const CapturaContenido = (e) => {
+    const { name, value } = e.target;
+    setValorInput({
+      ...showValorInput,
+      [name]: value,
+    });
+  };
 
   return (
-    <div class="body2">
-   
+    <div className="body2">
+      <div className="contenedor-formulario contenedor2">
+        <div className="imagen-formulario2"></div>
 
-      <div class="contenedor-formulario contenedor2">
-        <div class="imagen-formulario2">
-            
-        </div>
+        <form className="formulario">
+          <div className="texto-formulario">
+            <h2>Bienvenido al Sistema de Elecciones UMSS</h2>
+          </div>
+          <div className="input">
+            <label htmlFor="usuario">Usuario</label>
+            <input
+              placeholder="Ingresa tu nombre"
+              type="text"
+              id="usuario"
+              name="name"
+              onChange={CapturaContenido}
+            />
 
-        <form class="formulario">
-            <div class="texto-formulario">
-                <h2>Bienvenido al Sistema de Elecciones UMSS</h2>
-                {/* <!-- <p>Inicia sesión con tu cuenta</p> --> */}
-            </div>
-            <div class="input">
-                <label for="usuario">Usuario</label>
-                <input placeholder="Ingresa tu nombre" type="text" id="usuario"  name="name" onChange={CapturaContenido}/>
+            {showErrorNombre && (
+              <h4 class="errorMensaje">Por favor ingrese un nombre</h4>
+            )}
+          </div>
+          <div className="input">
+            <label htmlFor="contraseña">Contraseña</label>
+            <input
+              placeholder="Ingresa tu contraseña"
+              type="password"
+              name="password"
+              id="contraseña"
+              onChange={CapturaContenido}
+            />
 
-                {showErrorNombre && <h4>Por favor ingrese un nombre</h4>}  
-                
-            </div>
-            <div class="input">
-                <label for="contraseña">Contraseña</label>
-                <input placeholder="Ingresa tu contraseña" type="password" name="password" id="contraseña" onChange={CapturaContenido}/>
+            {showContraseña && (
+              <h4 class="errorMensaje">Por favor ingrese una contraseña</h4>
+            )}
+          </div>
 
-                {showContraseña && <h4>Por favor ingrese una contraseña</h4>}  
-            </div>
-
-
-            {/* <div class="password-olvidada">
-                <a href="#">¿Olvidaste tu contraseña?</a>
-            </div> */}
-
-            <br/>
-            <div class="input" onClick={LoginClick}>
-                <input type="submit" value="Ingresar"/>
-            </div>
+          <br />
+          <div className="input" onClick={LoginClick}>
+            <input type="submit" value="Ingresar" />
+          </div>
         </form>
+      </div>
     </div>
+  );
+};
 
-</div>
-  )
-}
-
-export default LoginPage
+export default LoginPage;
